@@ -1,0 +1,20 @@
+create database bd_veiculos;
+use bd_veiculos;
+
+create table tb_usuarios(
+	id_usuario int primary key auto_increment,
+    email varchar(255) not null,
+    senha varchar(20) not null
+);
+
+create table tb_veiculos(
+	id_veiculo int primary key auto_increment,
+    nome varchar(255) not null,
+    modelo varchar(255) not null,
+    placa varchar(50) not null,
+    ano date not null,
+    preco decimal not null
+);
+
+insert into tb_usuarios (email, senha) values
+('admin@email.com', '1234');
