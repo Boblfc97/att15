@@ -19,48 +19,56 @@
     <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
-    <h1>Gerenciar Produtos</h1>
+    <h1>Gerenciar Veículos</h1>
     <form action="pg_gerenciar.php" method="get">
-        <input type="text" name="produto_pesquisado"
-                placeholder="Digite o Nome do Produto">
+        <input type="text" name="veiculo_pesquisado"
+                placeholder="Digite o Nome do Veículo">
         <button type="submit">Pesquisar</button>
     </form> <br><br>
-    <div id="conteudo">
+    <div id="pagina">
         <?php
             include "conexao.php";
-            $sql = "SELECT * FROM tb_produtos";
-            if(isset($_GET['produto_pesquisado'])){
-                $pesquisa = $_GET['produto_pesquisado'];
-                $sql = "SELECT * FROM tb_produtos
-                        WHERE nome_produto LIKE '%$pesquisa%'";
+            $sql = "SELECT * FROM tb_veiculos";
+            if(isset($_GET['veiculo_pesquisado'])){
+                $pesquisa = $_GET['veiculo_pesquisado'];
+                $sql = "SELECT * FROM tb_veiculos
+                        WHERE veiculo LIKE '%$pesquisa%'";
             }
             $consultar = $pdo->prepare($sql);
             try{
                 $consultar->execute();
                 if($consultar->rowCount() == 0){
-                    echo "Nenhum Produto Encontrado! <br> <br>";
+                    echo "Nenhum Veículo Encontrado! <br> <br>";
                 }
                     echo "<div style='min-width:100%; margin-bottom:20px;'>
-                        Qtd de Produtos Encontrados: "
+                        Qtd de Veículo(s) Encontrados: "
                         .$consultar->rowCount().
                         "</div>";
 
                 $resultados = $consultar->fetchALL(PDO::FETCH_ASSOC);
                 foreach($resultados as $item){
-                    $id = $item['id_produto'];
-                    $nome = $item['nome_produto'];
+                    $id = $item['id_veiculo'];
+                    $veiculo = $item['veiculo'];
                     $valor = $item['preco'];
-                    $qtd = $item['estoque'];
-                    $cat = $item['categoria'];
-                    $foto = $item['imagem'];
+                    $modelo = $item['modelo'];
+                    $placa = $item['placa_escolhida'];
+                    $ano = $item['ano'];
                     echo "
                         <div class='cartoes'>
-                            <img src='$foto' class='fotos'> <br>
+                            <H1>$nome</H1> <br>
                             <span>R$ $valor</span> <br>
-                            <span>$nome</span> <br>
-                            <span>Categoria: $cat</span> <br>
-                            <span>Qtd Disponivel: $qtd</span> <br>
+                            <span>Modelo: $modelo</span> <br>
+                            <span>Placa: $placa</span> <br>
+                            <span>Data de Fabricação: $ano</span> <br>
                             <span>Cód. nº: $id</span> <br>
+
+                            <a href='editar.php?cod=$codigo'>
+                                <button>✏️ Editar</button>
+                            </a>
+
+                            <a href='confirmar_deletar.php?cod=$codigo'>
+                                <button>🗑️ Deletar</button>
+                            </a>
                         </div>
                     ";
                 }
