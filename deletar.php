@@ -18,6 +18,7 @@ try{
             alert('Deletado com Sucesso!');
         </script>
     ";
+    header("Location: pg_gerenciar.php");
 }catch(PDOException $erro){
     echo "Falha ao deletar!".$erro->getMessage();
 }
