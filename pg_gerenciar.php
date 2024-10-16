@@ -32,7 +32,7 @@
             if(isset($_GET['veiculo_pesquisado'])){
                 $pesquisa = $_GET['veiculo_pesquisado'];
                 $sql = "SELECT * FROM tb_veiculos
-                        WHERE veiculo LIKE '%$pesquisa%'";
+                        WHERE nome LIKE '%$pesquisa%'";
             }
             $consultar = $pdo->prepare($sql);
             try{
@@ -48,25 +48,25 @@
                 $resultados = $consultar->fetchALL(PDO::FETCH_ASSOC);
                 foreach($resultados as $item){
                     $id = $item['id_veiculo'];
-                    $veiculo = $item['veiculo'];
+                    $veiculo = $item['nome'];
                     $valor = $item['preco'];
                     $modelo = $item['modelo'];
-                    $placa = $item['placa_escolhida'];
+                    $placa = $item['placa'];
                     $ano = $item['ano'];
                     echo "
                         <div class='cartoes'>
-                            <H1>$nome</H1> <br>
+                            <H1>$veiculo</H1> <br>
                             <span>R$ $valor</span> <br>
                             <span>Modelo: $modelo</span> <br>
                             <span>Placa: $placa</span> <br>
                             <span>Data de Fabricação: $ano</span> <br>
                             <span>Cód. nº: $id</span> <br>
 
-                            <a href='editar.php?cod=$codigo'>
+                            <a href='editar.php?cod=$id'>
                                 <button>✏️ Editar</button>
                             </a>
 
-                            <a href='confirmar_deletar.php?cod=$codigo'>
+                            <a href='confirmar_deletar.php?cod=$id'>
                                 <button>🗑️ Deletar</button>
                             </a>
                         </div>

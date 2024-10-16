@@ -1,7 +1,7 @@
 <?php
 include "conexao.php";
 include "verificar_logado.php";
-$id = $_GET['id'];
+$id = $_GET['cod'];
 
 $sql = "SELECT * FROM tb_veiculos
         WHERE id_veiculo='$id'";
@@ -11,10 +11,11 @@ $consultar = $pdo->prepare($sql);
 try{
     $consultar->execute();
     $resultado = $consultar->fetch(PDO::FETCH_ASSOC);
-    $veiculo = $resultado['veiculo'];
+    $id = $resultado['id_veiculo'];
+    $veiculo = $resultado['nome'];
     $preco = $resultado['preco'];
     $modelo = $resultado['modelo'];
-    $placa = $resultado['placa_escolhida'];
+    $placa = $resultado['placa'];
     $ano = $resultado['ano'];
 }catch(PDOException $erro){
     echo "Falha ao consultar!".$erro->getMessage();
@@ -26,17 +27,17 @@ try{
 </h1>
 
 <form action="atualizar.php" method="get">
-    <input type="text" name="id_veiculo" value='<?php echo $id;?>' hidden>
+
+    <input type="number" name="id_veiculo" value='<?php echo $id;?>' hidden>
     <br> <br>
 
     <label>Veículo: </label> <br>
-    <text name="veiculo">
-        <?php echo $veiculo;?>
+    <input type="text" name="nome"value='<?php echo $veiculo;?>'>
     </text>
     <br> <br>
 
     <label>Preço: </label> <br>
-        <input type="number" step="0.01" min="0.00" name="preco" <?php echo $preco;?>> <br><br>
+        <input type="number" step="0.01" min="0.00" name="preco" value='<?php echo $preco;?>'> <br><br>
 
     <label>Modelo: </label> <br>
 

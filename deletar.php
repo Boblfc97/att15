@@ -2,7 +2,7 @@
 include "conexao.php";
 include "verificar_logado.php";
 
-$id = $_GET['id'];
+$id = $_GET['cod'];
 
 
 $sql = "DELETE FROM tb_veiculos WHERE id_veiculo='$id'";

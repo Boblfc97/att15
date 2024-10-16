@@ -1,5 +1,5 @@
 <?php
-$id = $_GET['id'];
+$id = $_GET['cod'];
 
 echo "
     Tem certeza que deseja apagar item Nº $id? <br> <br>

@@ -32,7 +32,7 @@
         <label>Placa: </label> <br>
         <input type="text" name="placa_escolhida"> <br><br>
 
-        <label>Ano de Fabricação: </label> <br>
+        <label>Data de Fabricação: </label> <br>
         <input type="date" name="ano"> <br><br>
 
         <button type="submit">Cadastrar Veiculo</button>

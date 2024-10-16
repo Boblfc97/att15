@@ -1,12 +1,12 @@
 .cartoes{
-    max-width: 200px;
-    max-height: 200px;
+    max-width: 300px;
+    max-height: 300px;
     min-height: 200px;
     min-width: 200px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgb(159, 255, 6);
     padding: 20px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 
@@ -14,11 +14,16 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    background-color: rgb(247, 168, 168);
+}
+
+.cartoes h1{
+    margin-bottom: -10px;
 }
 
 .cartoes span:nth-of-type(1){
-    font-size: 40px;
-    font-weight: 900;
+    font-size: 30px;
+    font-weight: 700;
 }
 
 .cartoes span:nth-of-type(2){
@@ -28,5 +33,5 @@
 }
 
 .cartoes span:nth-of-type(5){
-    color: brown;
+    color: green;
 }
